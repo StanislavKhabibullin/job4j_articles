@@ -1,5 +1,7 @@
 package ru.job4j.articles.model;
 
+import java.lang.ref.WeakReference;
+
 public class Word {
 
     private int id;

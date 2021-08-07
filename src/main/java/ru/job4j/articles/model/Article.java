@@ -1,18 +1,21 @@
 package ru.job4j.articles.model;
 
+import java.lang.ref.WeakReference;
+import java.util.List;
+
 public class Article {
 
     private int id;
 
-    private String text;
+    private WeakReference<String> text;
 
     public Article(int id, String text) {
         this.id = id;
-        this.text = text;
+        this.text = new WeakReference(text);
     }
 
     public Article(String text) {
-        this.text = text;
+        this.text = new WeakReference(text);
     }
 
     public int getId() {
@@ -24,10 +27,10 @@ public class Article {
     }
 
     public String getText() {
-        return text;
+        return text.get();
     }
 
     public void setText(String text) {
-        this.text = text;
+        this.text = new WeakReference(text);
     }
 }

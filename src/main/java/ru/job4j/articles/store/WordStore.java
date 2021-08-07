@@ -22,7 +22,8 @@ public class WordStore implements Store<Word>, AutoCloseable {
 
     private Connection connection;
 
-    public WordStore(Properties properties) {
+    public WordStore(Properties properties) throws ClassNotFoundException {
+        Class.forName("org.postgresql.Driver");
         this.properties = properties;
         initConnection();
         initScheme();

@@ -16,13 +16,14 @@ public class Application {
 
     public static final int TARGET_COUNT = 1_000_000;
 
-    public static void main(String[] args) {
-        var properties = loadProperties();
-        var wordStore = new WordStore(properties);
-        var articleStore = new ArticleStore(properties);
-        var articleGenerator = new RandomArticleGenerator();
-        var articleService = new SimpleArticleService(articleGenerator);
-        articleService.generate(wordStore, TARGET_COUNT, articleStore);
+    public static void main(String[] args) throws Exception {
+        var properties = loadProperties(); //грузим настройки
+        try (var wordStore = new WordStore(properties)) {
+            var articleStore = new ArticleStore(properties); // делается таблица статей
+            var articleGenerator = new RandomArticleGenerator(); //создаем новую статью
+            var articleService = new SimpleArticleService(articleGenerator); // непонятная тема
+            articleService.generate(wordStore, TARGET_COUNT, articleStore);
+        } // делается и заполняется таблица слов
     }
 
     private static Properties loadProperties() {

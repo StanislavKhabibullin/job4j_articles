@@ -28,6 +28,11 @@ public class ArticleStore implements Store<Article>, AutoCloseable {
         initScheme();
     }
 
+    @Override
+    protected void finalize() throws Throwable {
+        System.out.println("Cleaning articleStore");
+    }
+
     private void initConnection() {
         LOGGER.info("Создание подключения к БД статей");
         try {
