@@ -7,15 +7,15 @@ public class Article {
 
     private int id;
 
-    private WeakReference<String> text;
+    private String text;
 
     public Article(int id, String text) {
         this.id = id;
-        this.text = new WeakReference(text);
+        this.text = text;
     }
 
     public Article(String text) {
-        this.text = new WeakReference(text);
+        this.text = text;
     }
 
     public int getId() {
@@ -27,10 +27,10 @@ public class Article {
     }
 
     public String getText() {
-        return text.get();
+        return text;
     }
 
     public void setText(String text) {
-        this.text = new WeakReference(text);
+        this.text = text;
     }
 }

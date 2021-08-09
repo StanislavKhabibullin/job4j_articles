@@ -25,23 +25,10 @@ public class RandomArticleGenerator implements ArticleGenerator {
                 .map(Word::getValue)
                 .collect(Collectors.joining(" "));
         var ter = new Article(content);
-        var properties = loadProperties(); //грузим настройки
-        var articleStore = new ArticleStore(properties);
-        articleStore.save(ter);
-        System.gc();
+
         return new Article(content);
 
     }
 
-    private static Properties loadProperties() {
-        LOGGER.info("Загрузка настроек приложения");
-        var properties = new Properties();
-        try (InputStream in = Application.class.getClassLoader().getResourceAsStream("application.properties")) {
-            properties.load(in);
-        } catch (Exception e) {
-            LOGGER.error("Не удалось загрузить настройки. { }", e.getCause());
-            throw new IllegalStateException();
-        }
-        return properties;
-    }
+
 }
