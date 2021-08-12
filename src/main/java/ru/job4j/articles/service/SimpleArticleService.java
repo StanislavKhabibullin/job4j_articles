@@ -31,9 +31,9 @@ public class SimpleArticleService implements ArticleService {
         for (int i = 0; i < count; i++) {
             LOGGER.info("Сгенерирована статья № {}", i);
             var article = articleGenerator.generate(words);
-            var properties = loadProperties(); //грузим настройки
-            var articleStoreSimple = new ArticleStore(properties);
-            articleStoreSimple.save(article);
+         //   var properties = loadProperties(); //грузим настройки
+         //   var articleStoreSimple = new ArticleStore(properties);
+            articleStore.save(article);
             System.gc();
         }
 
